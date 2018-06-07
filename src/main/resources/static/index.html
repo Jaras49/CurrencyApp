@@ -27,7 +27,7 @@
 
     $.ajax({
         url : 'http://localhost:8090/getData',
-        //async : false,
+        async : false,
         method : 'GET',
         success : function(data) {
         myData = data;
@@ -42,7 +42,7 @@
   document.getElementById('span').innerHTML = 'Jaras';
   }
   alert("leci jqplot");
-  var plot1 = $.jqplot('chartdiv', [data], {
+  var plot1 = $.jqplot('chartdiv', [myData], {
     axes:{
         xaxis:{
             renderer:$.jqplot.DateAxisRenderer,

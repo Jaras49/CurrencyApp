@@ -7,9 +7,11 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
+import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 
+@Service
 public class NbpConnection implements Connection {
 
     private static final String NBP_CONNECTION_STRING = "http://api.nbp.pl/api/exchangerates/rates/a/gbp/last/10/?format=json";
