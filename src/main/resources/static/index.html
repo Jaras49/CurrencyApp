@@ -12,7 +12,7 @@
   </head>
   <body>
     <h2 class="h2">Funt Szterling</h2>
-    <span id="span">sssss</span>
+    <span id="span"></span>
     <div class="chartdiv" id="chartdiv"></div>
     <script>
       $(document).ready(function(){
@@ -30,7 +30,7 @@
         async : false,
         method : 'GET',
         success : function(data) {
-        myData = data;
+        myData = JSON.parse(data);
         alert("mam dane!");
       }
     });
@@ -38,9 +38,6 @@
   console.log(data);
   console.log(myData);
 
-  function setElement(){
-  document.getElementById('span').innerHTML = 'Jaras';
-  }
   alert("leci jqplot");
   var plot1 = $.jqplot('chartdiv', [myData], {
     axes:{
