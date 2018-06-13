@@ -11,44 +11,51 @@
 	
   </head>
   <body>
-    <h2 class="h2">Funt Szterling</h2>
+  <div class="form">
+    <form class="form" id="form">
+      <label class="form.label">Start Date</label>
+      <input type="date" name="startDate">
+      <label>End Date</label>
+      <input type="date" name="endDate">
+      <input type="submit" id="submit">
+    </form>
+  </div>
+  <div class="chart">
+    <h2 class="h2" id="currency"></h2>
     <span id="span"></span>
     <div class="chartdiv" id="chartdiv"></div>
+  </div>
     <script>
       $(document).ready(function(){
-  var data=[['2018-05-18',4.9117], ['2018-05-21',4.9071], ['2018-05-22',4.8814], ['2018-05-23',4.9034], ['2018-05-24',4.9056]];
   var myData = '';
-  setElement();
-  getData();
 
+  $("#submit").click(function(){
+      getData();
+      return false;
+      });
 
   function getData() {
-
-
     $.ajax({
-        url : 'http://localhost:8090/getData',
-        async : false,
+        url : 'http://localhost:8090/getData?' + $("#form").serialize(),
         method : 'GET',
         success : function(data) {
         myData = JSON.parse(data);
-        alert("mam dane!");
+
+        $("h2#currency").text(myData.currency);
+
+            var plot1 = $.jqplot('chartdiv', [myData.rates], {
+                axes:{
+                    xaxis:{
+                        renderer:$.jqplot.DateAxisRenderer,
+                        tickOptions:{formatString:'%Y-%m-%d'},
+                    }
+                }
+            });
       }
     });
   }
   console.log(data);
   console.log(myData);
-
-  alert("leci jqplot");
-  var plot1 = $.jqplot('chartdiv', [myData], {
-    axes:{
-        xaxis:{
-            renderer:$.jqplot.DateAxisRenderer,
-            tickOptions:{formatString:'%Y-%m-%d'},
-        }
-    },
-  });
-  
-
 });
     </script>
   </body>

@@ -8,26 +8,40 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import java.io.IOException;
+import java.net.URI;
 
 @Service
 public class NbpConnection implements Connection {
 
-    private static final String NBP_CONNECTION_STRING = "http://api.nbp.pl/api/exchangerates/rates/a/gbp/last/10/?format=json";
+    private static final String NBP_CONNECTION_STRING = "http://api.nbp.pl/api/exchangerates/rates/a/gbp";
+    private static final String SLASH = "/";
 
     @Override
-    public String getData() throws IOException {
+    public String getData(String startDate, String endDate) throws IOException {
 
         String data;
 
+        URI uri = buildNbpConnectionString(startDate, endDate);
+
         try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
-            HttpGet httpGet = new HttpGet(NBP_CONNECTION_STRING);
+            HttpGet httpGet = new HttpGet(uri);
             CloseableHttpResponse reesponse = httpClient.execute(httpGet);
             HttpEntity entity = reesponse.getEntity();
             data = EntityUtils.toString(entity);
         }
 
         return data;
+    }
+
+    private URI buildNbpConnectionString(String startDate, String endDate) {
+
+        return UriComponentsBuilder.fromHttpUrl(NBP_CONNECTION_STRING)
+                .path(SLASH + startDate)
+                .path(SLASH + endDate)
+                .queryParam("format", "json")
+                .build().encode().toUri();
     }
 }

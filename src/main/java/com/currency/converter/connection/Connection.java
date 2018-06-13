@@ -4,5 +4,5 @@ import java.io.IOException;
 
 public interface Connection {
 
-    String getData() throws IOException;
+    String getData(String from, String to) throws IOException;
 }
