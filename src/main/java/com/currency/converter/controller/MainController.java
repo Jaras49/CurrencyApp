@@ -31,9 +31,9 @@ public class MainController {
 
     @RequestMapping(method = RequestMethod.GET, value = "/getData")
     public @ResponseBody
-    String getData(@RequestParam String startDate, String endDate ) throws IOException {
+    String getData(@RequestParam String startDate, String endDate, String currencyCode ) throws IOException {
 
-        return editor.processData(connection.getData(startDate, endDate));
+        return editor.processData(connection.getData(startDate, endDate, currencyCode));
     }
 }
 
