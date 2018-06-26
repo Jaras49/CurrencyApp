@@ -57,11 +57,14 @@
                     }
                 }
             });
-      }
+      },error:function(a, b, c){
+            alert(JSON.parse(a.responseText).message);
+            console.log(a);
+            console.log(b);
+            console.log(c);
+        }
     });
   }
-  console.log(data);
-  console.log(myData);
 });
     </script>
   </body>
