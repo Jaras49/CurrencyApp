@@ -28,8 +28,8 @@ public class NbpConnection implements Connection {
 
         try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
             HttpGet httpGet = new HttpGet(uri);
-            CloseableHttpResponse reesponse = httpClient.execute(httpGet);
-            HttpEntity entity = reesponse.getEntity();
+            CloseableHttpResponse response = httpClient.execute(httpGet);
+            HttpEntity entity = response.getEntity();
             data = EntityUtils.toString(entity);
         }
 
