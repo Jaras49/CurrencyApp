@@ -16,6 +16,7 @@ import java.io.IOException;
 
 @Controller
 @Validated
+@RequestMapping(produces = "text/plain;charset=UTF-8")
 public class MainController {
 
     private static final String VALID_DATE_PATTERN = "[0-9]{4}-[0-9]{2}-[0-9]{2}";
@@ -28,13 +29,20 @@ public class MainController {
     private Editor editor;
 
     @RequestMapping(method = RequestMethod.GET, value = "/")
-    public ModelAndView test() {
+    public ModelAndView index() {
 
-        ModelAndView modelAndView = new ModelAndView("index.html");
+        ModelAndView modelAndView = new ModelAndView("index");
 
         return modelAndView;
     }
 
+    @RequestMapping(method = RequestMethod.GET, value = "/test")
+    public ModelAndView jsp() {
+
+        ModelAndView modelAndView = new ModelAndView("test");
+
+        return modelAndView;
+    }
 
     @RequestMapping(method = RequestMethod.GET, value = "/getData")
     public @ResponseBody
