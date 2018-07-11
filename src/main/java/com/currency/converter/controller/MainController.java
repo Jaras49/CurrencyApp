@@ -1,6 +1,7 @@
 package com.currency.converter.controller;
 
 import com.currency.converter.connection.Connection;
+import com.currency.converter.connection.crypto.compare.CryptoCompare;
 import com.currency.converter.json.editor.Editor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,6 +29,9 @@ public class MainController {
     @Autowired
     private Editor editor;
 
+    @Autowired
+    private CryptoCompare cryptoCompare;
+
     @RequestMapping(method = RequestMethod.GET, value = "/")
     public ModelAndView index() {
 
@@ -40,6 +44,8 @@ public class MainController {
     public ModelAndView jsp() {
 
         ModelAndView modelAndView = new ModelAndView("test");
+        modelAndView.addObject("test", "test text");
+        modelAndView.addObject("data", cryptoCompare.getData("", "", "GBP", "BTC"));
 
         return modelAndView;
     }
