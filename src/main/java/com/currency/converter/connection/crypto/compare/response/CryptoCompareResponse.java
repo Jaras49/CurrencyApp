@@ -11,7 +11,7 @@ public class CryptoCompareResponse {
     @JsonProperty("Response")
     private String response;
 
-    @JsonProperty("CryptoCompareResponseData")
+    @JsonProperty("Data")
     private List<CryptoCompareResponseData> cryptoCompareResponseDataList;
 
     @JsonProperty("TimeTo")
