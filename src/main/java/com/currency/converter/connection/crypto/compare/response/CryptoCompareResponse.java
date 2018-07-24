@@ -6,13 +6,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class NbpResponse {
+public class CryptoCompareResponse {
 
     @JsonProperty("Response")
     private String response;
 
-    @JsonProperty("NbpResponseData")
-    private List<NbpResponseData> nbpResponseDataList;
+    @JsonProperty("CryptoCompareResponseData")
+    private List<CryptoCompareResponseData> cryptoCompareResponseDataList;
 
     @JsonProperty("TimeTo")
     private long timeTo;
@@ -20,14 +20,14 @@ public class NbpResponse {
     @JsonProperty("TimeFrom")
     private long timeFrom;
 
-    public NbpResponse(String response, List<NbpResponseData> nbpResponseDataList, long timeTo, long timeFrom) {
+    public CryptoCompareResponse(String response, List<CryptoCompareResponseData> cryptoCompareResponseDataList, long timeTo, long timeFrom) {
         this.response = response;
-        this.nbpResponseDataList = nbpResponseDataList;
+        this.cryptoCompareResponseDataList = cryptoCompareResponseDataList;
         this.timeTo = timeTo;
         this.timeFrom = timeFrom;
     }
 
-    public NbpResponse() {
+    public CryptoCompareResponse() {
 
     }
 
@@ -35,8 +35,8 @@ public class NbpResponse {
         return response;
     }
 
-    public List<NbpResponseData> getNbpResponseDataList() {
-        return nbpResponseDataList;
+    public List<CryptoCompareResponseData> getCryptoCompareResponseDataList() {
+        return cryptoCompareResponseDataList;
     }
 
     public long getTimeTo() {
@@ -49,9 +49,9 @@ public class NbpResponse {
 
     @Override
     public String toString() {
-        return "NbpResponse{" +
+        return "CryptoCompareResponse{" +
                 "response='" + response + '\'' +
-                ", nbpResponseDataList=" + nbpResponseDataList +
+                ", cryptoCompareResponseDataList=" + cryptoCompareResponseDataList +
                 ", timeTo=" + timeTo +
                 ", timeFrom=" + timeFrom +
                 '}';

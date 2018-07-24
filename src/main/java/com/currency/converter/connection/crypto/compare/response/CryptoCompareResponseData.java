@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-class NbpResponseData {
+class CryptoCompareResponseData {
 
     @JsonProperty("time")
     private long time;
@@ -21,7 +21,7 @@ class NbpResponseData {
     @JsonProperty("open")
     private double open;
 
-    public NbpResponseData(long time, double close, double high, double low, double open) {
+    public CryptoCompareResponseData(long time, double close, double high, double low, double open) {
         this.time = time;
         this.close = close;
         this.high = high;
@@ -29,7 +29,7 @@ class NbpResponseData {
         this.open = open;
     }
 
-    public NbpResponseData() {
+    public CryptoCompareResponseData() {
 
     }
 
@@ -55,7 +55,7 @@ class NbpResponseData {
 
     @Override
     public String toString() {
-        return "NbpResponseData{" +
+        return "CryptoCompareResponseData{" +
                 "time=" + time +
                 ", close=" + close +
                 ", high=" + high +
