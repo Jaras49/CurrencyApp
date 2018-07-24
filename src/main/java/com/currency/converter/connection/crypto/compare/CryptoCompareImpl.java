@@ -1,6 +1,6 @@
 package com.currency.converter.connection.crypto.compare;
 
-import com.currency.converter.connection.crypto.compare.response.JsonResponse;
+import com.currency.converter.connection.crypto.compare.response.NbpResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -22,10 +22,10 @@ public class CryptoCompareImpl implements CryptoCompare {
     private RestTemplate restTemplate;
 
     @Override
-    public JsonResponse getData(String startDate, String endDate, String currencyCodeFrom, String currencyCodeTo) {
+    public NbpResponse getData(String startDate, String endDate, String currencyCodeFrom, String currencyCodeTo) {
 
         URI uri = buildConnectionUri(startDate, endDate, currencyCodeFrom, currencyCodeTo);
-        return restTemplate.getForObject(uri, JsonResponse.class);
+        return restTemplate.getForObject(uri, NbpResponse.class);
     }
 
     private URI buildConnectionUri(String startDate, String endDate, String currencyCodeFrom, String currencyCodeTo) {

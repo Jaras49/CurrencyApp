@@ -1,5 +1,6 @@
-package com.currency.converter.json.editor;
+package com.currency.converter.json.mapper.nbp;
 
+import com.currency.converter.json.mapper.JsonMapper;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -7,7 +8,7 @@ import com.google.gson.JsonParser;
 import org.springframework.stereotype.Service;
 
 @Service
-public class JsonEditor implements Editor {
+public class NbpResponseMapper implements JsonMapper {
 
     private static final String RATES = "rates";
     private static final String EFFECTIVE_DATE = "effectiveDate";
@@ -37,6 +38,5 @@ public class JsonEditor implements Editor {
         jsonResultObject.add(RATES, jsonResultArray);
 
         return jsonResultObject.toString();
-
     }
 }

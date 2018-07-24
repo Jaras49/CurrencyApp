@@ -6,13 +6,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class JsonResponse {
+public class NbpResponse {
 
     @JsonProperty("Response")
     private String response;
 
-    @JsonProperty("Data")
-    private List<Data> dataList;
+    @JsonProperty("NbpResponseData")
+    private List<NbpResponseData> nbpResponseDataList;
 
     @JsonProperty("TimeTo")
     private long timeTo;
@@ -20,14 +20,14 @@ public class JsonResponse {
     @JsonProperty("TimeFrom")
     private long timeFrom;
 
-    public JsonResponse(String response, List<Data> dataList, long timeTo, long timeFrom) {
+    public NbpResponse(String response, List<NbpResponseData> nbpResponseDataList, long timeTo, long timeFrom) {
         this.response = response;
-        this.dataList = dataList;
+        this.nbpResponseDataList = nbpResponseDataList;
         this.timeTo = timeTo;
         this.timeFrom = timeFrom;
     }
 
-    public JsonResponse() {
+    public NbpResponse() {
 
     }
 
@@ -35,8 +35,8 @@ public class JsonResponse {
         return response;
     }
 
-    public List<Data> getDataList() {
-        return dataList;
+    public List<NbpResponseData> getNbpResponseDataList() {
+        return nbpResponseDataList;
     }
 
     public long getTimeTo() {
@@ -49,9 +49,9 @@ public class JsonResponse {
 
     @Override
     public String toString() {
-        return "JsonResponse{" +
+        return "NbpResponse{" +
                 "response='" + response + '\'' +
-                ", dataList=" + dataList +
+                ", nbpResponseDataList=" + nbpResponseDataList +
                 ", timeTo=" + timeTo +
                 ", timeFrom=" + timeFrom +
                 '}';

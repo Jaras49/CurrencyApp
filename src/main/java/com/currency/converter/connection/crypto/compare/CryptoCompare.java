@@ -1,8 +1,8 @@
 package com.currency.converter.connection.crypto.compare;
 
-import com.currency.converter.connection.crypto.compare.response.JsonResponse;
+import com.currency.converter.connection.crypto.compare.response.NbpResponse;
 
 public interface CryptoCompare {
 
-    JsonResponse getData(String startDate, String endDate, String currencyCodeFrom, String currencyCodeTo);
+    NbpResponse getData(String startDate, String endDate, String currencyCodeFrom, String currencyCodeTo);
 }

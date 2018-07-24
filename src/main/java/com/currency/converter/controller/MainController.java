@@ -2,7 +2,9 @@ package com.currency.converter.controller;
 
 import com.currency.converter.connection.Connection;
 import com.currency.converter.connection.crypto.compare.CryptoCompare;
-import com.currency.converter.json.editor.Editor;
+import com.currency.converter.json.mapper.JsonMapper;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
@@ -27,7 +29,7 @@ public class MainController {
     private Connection connection;
 
     @Autowired
-    private Editor editor;
+    private JsonMapper jsonMapper;
 
     @Autowired
     private CryptoCompare cryptoCompare;
@@ -41,11 +43,13 @@ public class MainController {
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/test")
-    public ModelAndView jsp() {
+    public ModelAndView jsp() throws JsonProcessingException {
+
+        ObjectMapper objectMapper = new ObjectMapper();
 
         ModelAndView modelAndView = new ModelAndView("test");
         modelAndView.addObject("test", "test text");
-        modelAndView.addObject("data", cryptoCompare.getData("", "", "GBP", "BTC"));
+        modelAndView.addObject("data", objectMapper.writeValueAsString(cryptoCompare.getData("", "", "GBP", "BTC")));
 
         return modelAndView;
     }
@@ -57,7 +61,7 @@ public class MainController {
                    @Pattern(regexp = VALID_DATE_PATTERN, message = ERR_INVALID_FORMAT) String endDate,
                    String currencyCode) throws IOException {
 
-        return editor.processData(connection.getData(startDate, endDate, currencyCode));
+        return jsonMapper.processData(connection.getData(startDate, endDate, currencyCode));
     }
 }
 
